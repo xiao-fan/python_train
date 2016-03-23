@@ -8,12 +8,21 @@ line_list = file_obj.readlines()
 input_times = 0
 while input_times < 3:
     name = raw_input("please input your name>>>")
+    tmp_list = []
     input_times += 1
     for line in  line_list:
-        line_one = line.strip().split(';')
-        if line_one[0] == name:
+        line_one = line.strip()#.split(';')
+        ele_list = line_one.split(';')
+        if ele_list[0]  != name:
+            str_ele=';'.join(ele_list)
+            tmp_list.append(str_ele)
+        else:
+            ele_list[2] = str(input_times)
+            str_ele=';'.join(ele_list)
+            tmp_list.append(str_ele)
             print "haha! you are right!"
-            break
+    for i in tmp_list:
+        file_obj.write(i)
 
 
 file_obj.close()
